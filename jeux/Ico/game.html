@@ -1,0 +1,210 @@
+<!-- jeux/game.html (refactor v7) -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TODO▸Titre du Jeu – Retro XP</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    :root { --xp-blue-dark:#0f4d92; --xp-blue-light:#3a6ea5; --xp-cream:#e5ecf9; }
+    h2 { font-family:"Press Start 2P",cursive; letter-spacing:-1px; margin:0 0 .5rem; }
+
+    /* Center headings for guide & VOD */
+    .guide-section h2,
+    .vod-section h2 { text-align: center; }
+
+    /* Grid layout */
+    .blog-window .window-content {
+      padding:1rem;
+      display:grid;
+      grid-template-areas:
+        "cover info"
+        "guide guide"
+        "vod vod"
+        "footer footer";
+      grid-template-columns:1fr 1fr;
+      gap:1.5rem 2rem;
+      align-items:start;
+    }
+    @media(max-width:767px){
+      .blog-window .window-content{
+        grid-template-areas:
+          "cover"
+          "info"
+          "guide"
+          "vod"
+          "footer";
+        grid-template-columns:1fr;
+      }
+    }
+    .cover {grid-area:cover;}
+    .info {grid-area:info;}
+    .guide-section {grid-area:guide;}
+    .vod-section {grid-area:vod;}
+
+    /* Section containers */
+    .section{
+      background:var(--xp-cream);
+      padding:1rem;
+      border:2px solid var(--xp-blue-dark);
+      border-radius:4px;
+    }
+
+    /* "Ce que j'ai utilisé" list styling */
+    .guide-section .used-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .guide-section .used-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .guide-section .used-list li strong {
+      width: 160px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    .guide-section .used-list li a {
+      align-self: center;
+    }
+    .guide-section .used-list li.used-video iframe {
+      width: 360px;
+      aspect-ratio: 16/9;
+      border: none;
+    }
+
+    /* VOD video wrapper for 16:9 */
+    .vod-video {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 */
+      overflow: hidden;
+    }
+    .vod-video iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* Footer note spanning full width and centered */
+    .footer-note {
+      grid-area: footer;
+      font-size: .75rem;
+      font-style: italic;
+      color: #333;
+      text-align: center;
+      margin: 1rem 0 0;
+    }
+
+    /* Other styles (unchanged) */
+    .cover img{width:100%;border:4px solid#fff;box-shadow:0 0 0 2px var(--xp-blue-dark),4px 4px 0 rgba(0,0,0,.35);border-radius:2px;display:block;}
+    .info .stars{display:inline-flex;gap:4px;align-items:center;margin-bottom:1rem;}
+    .star{width:22px;height:22px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23cccccc'%3E%3Cpath d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'/%3E%3C/svg%3E") center/contain no-repeat;}
+    .star.filled{filter:brightness(0) saturate(100%) invert(55%) sepia(92%) saturate(885%) hue-rotate(-57deg) brightness(103%) contrast(97%);}
+    .critic-box{background:#fff;padding:1rem;border:2px inset #c0c0c0;box-shadow:inset 1px 1px 1px rgba(0,0,0,.15);line-height:1.55;}
+    .links-ext a{color:var(--xp-blue-dark);text-decoration:none;font-weight:bold;}
+    .links-ext a:hover{text-decoration:underline;}
+    .titlebar{align-items:center;}
+    .titlebar .control-btn.back{width:22px;height:20px;margin-right:6px;background:var(--xp-blue-light);border:1px solid#fff;position:relative;cursor:pointer;}
+    .titlebar .control-btn.back::before{content:'←';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:13px;color:#fff;line-height:1;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="xp-window blog-window" data-title="TODO▸Titre du Jeu">
+      <div class="titlebar">
+        <button class="control-btn back" aria-label="Retour"></button>
+        <span class="title-text">TODO▸Titre du Jeu</span>
+        <div class="controls">
+          <button class="control-btn minimize" aria-label="Minimiser"></button>
+          <button class="control-btn maximize" aria-label="Maximiser"></button>
+          <button class="control-btn close" aria-label="Fermer"></button>
+        </div>
+      </div>
+      <div class="window-content">
+        <div class="cover">
+          <img src="../../images/ico.webp" alt="Screenshot – TODO▸Titre du Jeu">
+        </div>
+        <div class="section info">
+          <h2>Note</h2>
+          <div class="stars" id="star-bar">
+            <span class="star filled"></span>
+            <span class="star filled"></span>
+            <span class="star filled"></span>
+            <span class="star"></span>
+            <span class="star"></span>
+          </div>
+          <h2>Critique</h2>
+          <div class="critic-box">
+            TODO▸Tes impressions, anecdotes, défis rencontrés…
+          </div>
+        </div>
+        <div class="section guide-section">
+          <h2>Ce que j'ai utilisé&nbsp;?</h2>
+          <ul class="used-list">
+            <li>
+              <strong>Emulateur PS2 :</strong>
+              <a href="https://pcsx2.net/download.html" target="_blank" rel="noopener">PCSX2</a>
+            </li>
+            <li class="used-video">
+              <strong>Tuto pour s'en servir :</strong>
+              <iframe
+                title="Tutoriel PCSX2"
+                src="https://www.youtube.com/embed/JrSk_qyMPd0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </li>
+            <li>
+              <strong>Pack de Textures HD :</strong>
+              <a href="https://gbatemp.net/threads/ico-usa-eu-hd-remaster.630164/" target="_blank" rel="noopener">GBATemp</a>
+            </li>
+          </ul>
+        </div>
+        <div class="section vod-section">
+          <h2>VOD</h2>
+          <div class="vod-video">
+            <iframe
+              title="VOD Longplay"
+              src="https://www.youtube.com/embed/videoseries?list=PL_m8o25CB8u-tUsAolY0EXvzUDp2heDf2"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+        <p class="footer-note">* Aucun contenu n'est hébergé ici – liens externes uniquement *</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../script.js"></script>
+  <script>
+    const win=document.querySelector('.blog-window');if(typeof setupWindow==='function')setupWindow(win);
+    win.querySelector('.control-btn.back').addEventListener('click',e=>{e.stopImmediatePropagation();history.back();},true);
+    win.querySelector('.control-btn.close').addEventListener('click',e=>{e.stopImmediatePropagation();location.href='../../index.html';},true);
+  </script>
+  <script>
+    (function() {
+      // e.g. /jeux/Shadow_of_the_Colossus/game.html → slug = "Shadow_of_the_Colossus"
+      const parts = location.pathname.split('/').filter(p => p);
+      const jeuxIndex = parts.indexOf('jeux');
+      if (jeuxIndex !== -1 && parts.length > jeuxIndex + 1) {
+        const slug = parts[jeuxIndex + 1];
+        const label = slug.replace(/_/g, ' ');
+        // update document title
+        document.title = `${label} – Retro XP`;
+        // update the XP window title
+        const win = document.querySelector('.blog-window');
+        win.dataset.title = label;
+        win.querySelector('.title-text').textContent = label;
+      }
+    })();
+  </script>
+</body>
+</html>
