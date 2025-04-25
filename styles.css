@@ -260,3 +260,32 @@ body{font-family:Tahoma, Geneva, sans-serif;
 /* ========== Mon PC popup still floats smaller ========== */
 #win-pc{position:absolute; top:100px; left:100px; width:400px; z-index:2000;}
 #win-pc .window-content{padding:1rem;}
+
+/* Mobile: stack “Ce que j’ai utilisé” items vertically,
+   let the <strong> labels size themselves, and make iframes fluid */
+   @media (max-width:575.98px) {
+    .guide-section .used-list {
+      /* switch from flex to a single-column grid with a bit more gap */
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .guide-section .used-list li {
+      /* stack label above content, tighten up the gap */
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .guide-section .used-list li strong {
+      /* let the label size itself, and add a little bottom margin */
+      width: auto;
+      margin-bottom: 0;
+    }
+    .guide-section .used-list li.used-video iframe {
+      /* make tutorial videos full-width */
+      width: 100%;
+      height: auto;
+    }
+  }
+  
