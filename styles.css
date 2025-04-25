@@ -1,74 +1,49 @@
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: Tahoma, Geneva, sans-serif; background: linear-gradient(180deg, #a0d8ff 0%, #4fa3ff 100%); min-height: 100vh; display: flex; flex-direction: column; }
-.container { width: 100%; padding: 2rem; margin: auto; }
-@media (min-width: 768px) { .container { max-width: 1320px; } }
+/* ========== global ========== */
+* { box-sizing:border-box; margin:0; padding:0; }
+body{font-family:Tahoma, Geneva, sans-serif;
+     background:linear-gradient(180deg,#a0d8ff 0%,#4fa3ff 100%);
+     min-height:100vh; display:flex; flex-direction:column;}
+.container{width:100%; padding:2rem; margin:auto;}
+@media (min-width:768px){.container{max-width:1320px;}}
 
-/* Fenêtres XP */
-.xp-window {
-  border: 2px solid #000080;
-  border-radius: 4px;
-  box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
-  background: #c3d9ff;
-  margin-bottom: 2rem;
-  position: relative;
-  width: 100%;
-
-  /* only animate visual flair, not geometry */
-  transition: box-shadow .2s ease, transform .2s ease;
+/* ========== task-bar – always on top! ========== */
+.taskbar{
+  position:fixed; bottom:0; left:0; width:100%; height:42px;
+  background:#0e2e8a; display:flex; align-items:center; gap:8px; padding:0 8px;
+  box-shadow:0 -2px 6px rgba(0,0,0,.4);
+  z-index:9999;                /* NEW – outranks every window */
 }
+.taskbar-btn{background:#c3d9ff; border:2px outset #a0c4f0; padding:4px 10px;
+             font-size:.95rem; color:#000080; cursor:pointer; max-width:180px;
+             white-space:nowrap; text-overflow:ellipsis; overflow:hidden;}
+.taskbar-btn:hover{background:#e5ecf9;}
 
-/* Title‐bars default to no-drag */
-.titlebar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: linear-gradient(to right, #0f4d92, #3a6ea5);
-  padding: 4px 8px;
-  color: #fff;
-  font-weight: bold;
-  height: 32px;
-  user-select: none;
-  cursor: default;
+* ========== windows ========== */
+.xp-window{
+  border:2px solid #000080; border-radius:4px; background:#c3d9ff;
+  box-shadow:4px 4px 0 rgba(0,0,0,.5); margin-bottom:2rem; width:100%;
+  position:relative; transition:box-shadow .2s, transform .2s;
 }
+.xp-window.maximized{position:fixed; top:12px; left:50%; transform:translateX(-50%);
+                      width:94vw; height:86vh; z-index:1000; margin:0;}
 
-/* Mon PC *is* draggable */
-#win-pc .titlebar {
-  cursor: move;
-}
+/* title-bar (draggable handled per-window) */
+.titlebar{display:flex; justify-content:space-between; align-items:center;
+          background:linear-gradient(to right,#0f4d92,#3a6ea5);
+          padding:4px 8px; color:#fff; font-weight:bold; height:32px; user-select:none; }
+.title-text{font-size:1.2rem;}
+.controls{display:flex; gap:6px;}
+.control-btn{position:relative;width:22px;height:20px;border:1px solid #fff;background:none;cursor:pointer;}
+.control-btn.minimize{background:#3a6ea5;}
+.control-btn.minimize::before{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:10px;height:2px;background:#fff;}
+.control-btn.maximize{background:#3a6ea5;}
+.control-btn.maximize::before{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:10px;height:8px;border:2px solid #fff;}
+.control-btn.close{background:#e81123;}
+.control-btn.close::before{content:'×';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:#fff;font-size:14px;line-height:14px;font-weight:bold;}
+.control-btn:hover{filter:brightness(1.2);}
 
-.xp-window.maximized {
-  position: fixed;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 94vw;
-  height: 86vh;
-  z-index: 1000;
-  margin: 0;
-}
-
-.titlebar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(to right, #0f4d92, #3a6ea5);
-    padding: 4px 8px;
-    color: #fff;
-    font-weight: bold;
-    height: 32px;
-    user-select: none;
-    cursor: default;        /* ← was “move” */
-  }
-.title-text { font-size: 1.2rem; }
-.controls { display: flex; gap: 6px; }
-.control-btn { position: relative; width: 22px; height: 20px; border: 1px solid #fff; padding: 0; background: none; cursor: pointer; }
-.control-btn.minimize { background: #3a6ea5; }
-.control-btn.minimize::before { content: ''; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 10px; height: 2px; background: #fff; }
-.control-btn.maximize { background: #3a6ea5; }
-.control-btn.maximize::before { content: ''; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 10px; height: 8px; border: 2px solid #fff; }
-.control-btn.close { background: #e81123; }
-.control-btn.close::before { content: '×'; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); color: #fff; font-size: 14px; line-height: 14px; font-weight: bold; }
-.control-btn:hover { filter: brightness(1.2); }
+/* generic window content */
+.window-content{padding:2rem 6rem; overflow:auto; height:calc(100% - 32px);}
 
 /* Moins de padding pour le contenu */
 .window-content {padding: 2rem 6rem; overflow: auto; height: calc(100% - 32px); }
@@ -250,8 +225,38 @@ body { font-family: Tahoma, Geneva, sans-serif; background: linear-gradient(180d
     outline: none;
     box-shadow: 1px 1px 0 #888 inset;
   }
-  
-  /* Mon PC: smaller, custom padding */
-#win-pc .window-content {
-  padding: 1rem 1rem; 
+
+/* ========== Instagram window specifics ========== */
+#win-insta{width:400px;}               /* desktop size matches Mon PC */
+#win-insta .links.instagram{
+  display:flex; flex-direction:row; gap:1rem;
 }
+#win-insta .links.instagram .link-card{
+  flex:1;                             /* ➜ each card widens */
+}
+
+/* Make Insta window titlebar draggable */
+#win-insta .titlebar {
+  cursor: move;
+}
+
+/* ========== MOBILE tweaks ========== */
+@media (max-width:575.98px){
+  /* windows stretch edge-to-edge & tighter padding */
+  .xp-window{width:100%;}
+  .window-content{padding:1.5rem 1rem;}
+  #win-links .window-content{padding:2rem 1rem;}
+
+  /* fonts & gaps scale down a notch */
+  .title-text{font-size:1rem;}
+  .links{gap:.8rem;}
+  .link-card{padding:1rem 1.2rem;}
+
+  /* Instagram cards now stack */
+  #win-insta{width:100%;}
+  #win-insta .links.instagram{flex-direction:column;}
+}
+
+/* ========== Mon PC popup still floats smaller ========== */
+#win-pc{position:absolute; top:100px; left:100px; width:400px; z-index:2000;}
+#win-pc .window-content{padding:1rem;}

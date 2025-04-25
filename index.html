@@ -9,66 +9,68 @@
 <body>
   <div class="container">
 
-    <!-- Fenêtre XP : Liens principaux -->
-    <div class="xp-window" id="win-links" data-title="Mes Liens">
-      <div class="titlebar">
-        <span class="title-text">Mes Liens</span>
-        <div class="controls">
-          <button class="control-btn minimize" aria-label="Minimiser"></button>
-          <button class="control-btn maximize" aria-label="Maximiser"></button>
-          <button class="control-btn close"    aria-label="Fermer"></button>
-        </div>
-      </div>
+<!-- Fenêtre XP : Liens principaux -->
+<div class="xp-window" id="win-links" data-title="Mes Liens">
+  <div class="titlebar">
+    <span class="title-text">Mes Liens</span>
+    <div class="controls">
+      <button class="control-btn minimize" aria-label="Minimiser"></button>
+      <button class="control-btn maximize" aria-label="Maximiser"></button>
+      <button class="control-btn close"    aria-label="Fermer"></button>
+    </div>
+  </div>
 
-      <div class="window-content">
-        <header class="profile offline">
-          <div class="avatar-wrapper">
-            <img src="images/mnkwayplop.jpg" alt="Avatar" class="avatar">
-            <span class="msn-frame"></span>
-          </div>
-          <h1 class="username">Mnkway</h1>
-          <div class="msn-status"><span id="stream-text">Pas en Stream</span></div>
-        </header>
-
-        <div class="links primary">
-          <div class="link-card" data-link="mon-pc"><span class="text">Mon PC</span><span class="menu">⋮</span></div>
-          <div class="link-card" data-link="insta"><span class="text">Instagram</span><span class="menu">⋮</span></div>
-          <div class="link-card" data-link="twitter"><span class="text">Twitter</span><span class="menu">⋮</span></div>
-          <div class="link-card" data-link="chaine-vod"><span class="text">Chaîne VOD</span><span class="menu">⋮</span></div>
-          <div class="link-card" data-link="letterboxd"><span class="text">Letterboxd</span><span class="menu">⋮</span></div>
-        </div>
+  <div class="window-content">
+    <header class="profile offline">
+      <div class="avatar-wrapper">
+        <img src="images/mnkwayplop.jpg" alt="Avatar" class="avatar">
+        <span class="msn-frame"></span>
       </div>
+      <h1 class="username">Mnkway</h1>
+      <div class="msn-status"><span id="stream-text">Pas en Stream</span></div>
+    </header>
+
+    <div class="links primary">
+      <div class="link-card" data-link="mon-pc"><span class="text">Mon PC</span><span class="menu">⋮</span></div>
+      <div class="link-card" data-link="insta"><span class="text">Instagram</span><span class="menu">⋮</span></div>
+      <div class="link-card" data-link="twitter"><span class="text">Twitter</span><span class="menu">⋮</span></div>
+      <div class="link-card" data-link="chaine-vod"><span class="text">Chaîne VOD</span><span class="menu">⋮</span></div>
+      <div class="link-card" data-link="letterboxd"><span class="text">Letterboxd</span><span class="menu">⋮</span></div>
+      <div class="link-card" data-link="mangacollec"><span class="text">Mangacollec</span><span class="menu">⋮</span></div>
+      <div class="link-card" data-link="tiktok"><span class="text">TikTok</span><span class="menu">⋮</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="separator" id="separator"></div>
+
+<!-- Fenêtre XP : Jeux -->
+<div class="xp-window" id="win-jeux" data-title="Jeux">
+  <div class="titlebar">
+    <span class="title-text">Jeux</span>
+    <div class="controls">
+      <button class="control-btn minimize" aria-label="Minimiser"></button>
+      <button class="control-btn maximize" aria-label="Maximiser"></button>
+      <button class="control-btn close"    aria-label="Fermer"></button>
+    </div>
+  </div>
+
+  <div class="window-content">
+    <!-- Recherche -->
+    <div class="search-container">
+      <input
+        type="text"
+        id="game-search"
+        placeholder="🔍 Rechercher un jeu…"
+        autocomplete="off"
+      />
     </div>
 
-    <div class="separator" id="separator"></div>
-
-    <!-- Fenêtre XP : Jeux -->
-    <div class="xp-window" id="win-jeux" data-title="Jeux">
-      <div class="titlebar">
-        <span class="title-text">Jeux</span>
-        <div class="controls">
-          <button class="control-btn minimize" aria-label="Minimiser"></button>
-          <button class="control-btn maximize" aria-label="Maximiser"></button>
-          <button class="control-btn close"    aria-label="Fermer"></button>
-        </div>
-      </div>
-
-      <div class="window-content">
-        <!-- Recherche -->
-        <div class="search-container">
-          <input
-            type="text"
-            id="game-search"
-            placeholder="🔍 Rechercher un jeu…"
-            autocomplete="off"
-          />
-        </div>
-
-        <!-- Liste de jeux -->
-        <div class="links jeux" id="jeux-list"></div>
-        <div id="sentinel"></div>
-      </div>
-    </div>
+    <!-- Liste de jeux -->
+    <div class="links jeux" id="jeux-list"></div>
+    <div id="sentinel"></div>
+  </div>
+</div>
 
     <!-- Fenêtre XP : Mon PC -->
     <div class="xp-window" id="win-pc" data-title="Mon PC" style="display:none;">
@@ -80,7 +82,6 @@
           <button class="control-btn close"    aria-label="Fermer"></button>
         </div>
       </div>
-
       <div class="window-content">
         <table class="config-table">
           <tr><th>GPU</th><td>MSI NVIDIA GeForce RTX 5080 16G Ventus 3X OC Plus</td></tr>
@@ -92,6 +93,26 @@
           <tr><th>Ventirad</th><td>Dark Rock Pro 5</td></tr>
           <tr><th>Ventilos</th><td>BeQuiet Silent Wings 4</td></tr>
         </table>
+      </div>
+    </div>
+    
+    <!-- Fenêtre XP : Instagram -->
+    <div class="xp-window" id="win-insta" data-title="Instagram" style="display:none;">
+      <div class="titlebar">
+        <span class="title-text">Instagram</span>
+        <div class="controls">
+          <button class="control-btn minimize" aria-label="Minimiser"></button>
+          <button class="control-btn maximize" aria-label="Maximiser"></button>
+          <button class="control-btn close"    aria-label="Fermer"></button>
+        </div>
+      </div>
+
+      <div class="window-content">
+        <!-- flex:1 makes each card grow on desktop; stacking handled in CSS media-query -->
+        <div class="links instagram">
+          <a class="link-card" href="https://www.instagram.com/mnkway/"        target="_blank"><span class="text">Stream</span></a>
+          <a class="link-card" href="https://instagram.com/mnkway_gunpla" target="_blank"><span class="text">Gunpla</span></a>
+        </div>
       </div>
     </div>
   </div>
