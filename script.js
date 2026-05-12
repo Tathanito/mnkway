@@ -3,7 +3,7 @@ let zTop = 1000;
 /* ─────────────── Jeux list ─────────────── */
 const gameSlugs = [
   'Resident_Evil_2', 'Ico', 'Zelda_Skyward_Sword',
-  "Zelda_Majora's_Mask", 'Zelda_Ocarine_of_Time', 'Shenmue',
+  "Zelda_Majora's_Mask", 'Zelda_Ocarine_of_Time', 'Shenmue','Xanadu_Next',
 ];
 
 /* ──────────────────────────────────────────
